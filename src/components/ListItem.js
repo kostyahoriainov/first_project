@@ -13,7 +13,7 @@ class ListItem extends Component {
             />
 
     render() {
-        const data = this.props.data.data;
+        const data = this.props.data;
 
         return <ul className='list-group'>
                     {data.map(this.eachItem)}

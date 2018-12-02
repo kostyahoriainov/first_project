@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
 import '../index.css';
+import data from '../data/data'
 import SearchBar from './SearchBar';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getInitialState();
+    this.state = {
+      data: data,
+      searchValue: ''
+    };
   }
 
-  getInitialState = () => {
-    return {data: this.props.data}
-  }
 
   update = value => {
-    const state = this.props.data;
-    const newState = state.filter(item => item.title.toLowerCase().includes(value.toLowerCase()));
-    this.setState({
-      data: newState
-    });
+    this.setState({ searchValue: value})
   }
 
   render() {
+    const data = this.state.data.filter(item => item.title.toLowerCase().includes(this.state.searchValue))
+    
     return <div className='container'>
-      <SearchBar state={this.props.data} update={this.update}/>
-      <ListItem data={this.state}/>
+      <SearchBar update={this.update}/>
+      <ListItem data={data}/>
     </div>
   }
 }
