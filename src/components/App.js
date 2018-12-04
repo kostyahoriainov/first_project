@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    const data = this.state.data.filter(item => item.title.toLowerCase().includes(this.state.searchValue))
+    const data = this.state.data.filter(item => item.title.toLowerCase().indexOf(this.state.searchValue.toLocaleLowerCase()) == 0 )
     
     return <div className='container'>
       <SearchBar update={this.update}/>
